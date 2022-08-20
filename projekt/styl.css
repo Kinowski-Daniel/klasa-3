@@ -1,0 +1,133 @@
+
+.con{
+    height: 100%;
+    width: 100%;
+    background-image: url(lofi.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-left: 5% ;
+    padding-right:5% ;
+    box-sizing: border-box;
+    position: relative;
+    
+}
+
+.navb{
+    width:100%;
+    height: 15vh;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    
+   
+}
+
+.navb .btn{
+    display: inline-block;
+    background: linear-gradient(45deg, #d1a2e4, #d68ff7);
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color:rgb(165, 234, 247);
+    box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    
+}
+
+.logo{
+    width: 250px;
+    cursor: pointer;
+    
+}
+
+nav{
+    flex: 1;
+    padding-left: 60px;
+   
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 0px 20px;
+    
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: rgb(208, 206, 216);
+    
+}
+
+.kontent h1{
+    font-size: 60px;
+    font-weight: 100;
+    margin-top: 24px;
+    margin-bottom: 15px;
+    color: rgb(208, 206, 216);
+    
+}
+
+.kontent p{
+    font-size: 20px;
+    color: rgb(208, 206, 216);
+    
+}
+
+.kontent{
+ margin-left: 10%;
+ margin-top: 10%;
+
+}
+
+.kontent .btn{
+    display: inline-block;
+    background: linear-gradient(45deg, #d1a2e4, #d68ff7);
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color:rgb(165, 234, 247);
+    box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    
+}
+.social{
+    position: fixed;
+    height:15vh;
+    margin:auto;
+    right: 160px;
+    bottom: -65px;
+
+}
+.social a{
+    margin: 5px;
+}
+.social .btn{
+    display: inline-block;
+    background: linear-gradient(45deg, #d1a2e4, #d68ff7);
+    border-radius: 6px;
+    padding: 10px 50px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color:rgb(165, 234, 247);
+    box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    right: 160px;
+     float: right;
+}
+
+.muzyka{
+position: absolute;
+  bottom: 325px;
+   right: 160px;
+}
+
+.lll{
+   color:pink;
+
+}
+
+iframe{
+    border-color: #d68ff7;
+
+}
+
