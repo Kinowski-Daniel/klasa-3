@@ -9,7 +9,7 @@
     padding-right:5% ;
     box-sizing: border-box;
     position: relative;
-
+    
 }
 
 .navb{
@@ -18,8 +18,10 @@
     margin:auto;
     display: flex;
     align-items: center;
+    
    
 }
+
 .navb .btn{
     display: inline-block;
     background: linear-gradient(45deg, #d1a2e4, #d68ff7);
@@ -27,13 +29,13 @@
     padding: 10px 20px;
     box-sizing: border-box;
     text-decoration: none;
-    color:#fff;
+    color:rgb(165, 234, 247);
     box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
     
 }
 
 .logo{
-    width 160px;
+    width: 250px;
     cursor: pointer;
     
 }
@@ -85,17 +87,20 @@ nav ul li a{
     padding: 10px 20px;
     box-sizing: border-box;
     text-decoration: none;
-    color:#fff;
+    color:rgb(165, 234, 247);
     box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
     
 }
 .social{
-    width:100%;
-    height: 15vh;
+    position: fixed;
+    height:15vh;
     margin:auto;
     right: 160px;
-    float: right;
+    bottom: -65px;
 
+}
+.social a{
+    margin: 5px;
 }
 .social .btn{
     display: inline-block;
@@ -104,12 +109,10 @@ nav ul li a{
     padding: 10px 50px;
     box-sizing: border-box;
     text-decoration: none;
-    color:#fff;
+    color:rgb(165, 234, 247);
     box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
-    bottom: 0px;
     right: 160px;
      float: right;
-     bottom: 0px;
 }
 
 .muzyka{
@@ -122,3 +125,9 @@ position: absolute;
    color:pink;
 
 }
+
+iframe{
+    border-color: #d68ff7;
+
+}
+
