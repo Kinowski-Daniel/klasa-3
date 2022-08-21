@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Projekt 1</title>
+    <link rel="stylesheet" href="styl.css">
+</head>
+<body>    
+    <div class="con"> 
+        <div class="navb">
+            <svg viewBox="0 0 800 400">
+                <text id="mytext" x="0%" y="50%" fill="none" >Daniel Kinowski</text>
+                <use xlink:href="#mytext" class="copy copy1"></use>
+                <use xlink:href="#mytext" class="copy copy2"></use>
+                <use xlink:href="#mytext" class="copy copy3"></use>
+                <use xlink:href="#mytext" class="copy copy4"></use>
+                <use xlink:href="#mytext" class="copy copy5"></use>
+            </svg>
+            <nav>
+                <ul>
+                    <li> <a href="" class="btn">Główna</a></li>
+                    <li> <a href="zadania.html" class="btn">Zadania</a></li>
+                </ul>
+            </nav>
+        
+
+        </div>
+    
+
+        <div class="kontent">
+            <h1>Coś o mnie</h1>
+            <p>Mam 16 lat</p>
+            <p>Interesuje się przeważnie muzyką</p>
+            <p>Publicznie jestem osobą dość zamkniętą i spokojną</p>
+
+            
+            <a href="rick.mp4" class="btn">Niespodzianka</a>
+        
+
+    
+    
+        </div>
+        <div class="muzyka">
+            <button id="change-video">Rainbow Anarchy</button>
+            <button id="change-video1">Lofi Music</button>
+            <button id="change-video2">It's over</button>
+            <button id="change-video3">Piosenka Stevonnie</button>
+            <button id="change-video4">Love Like You</button>
+            <br>
+            <iframe id="Video" width="650" height="400"  src="lofi.mp4" frameborder="10" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+            picture-in-picture; "allowfullscreen>
+            </iframe>
+            </div>
+            </div>
+       
+            
+<script type="text/javascript">
+  
+    document.getElementById("change-video").onclick = function() {
+        document.getElementById('Video').src = "splat.mp4";
+    };
+    document.getElementById("change-video1").onclick = function() {
+        document.getElementById('Video').src = "lofi.mp4";
+    };
+    document.getElementById("change-video2").onclick = function() {
+        document.getElementById('Video').src = "steven.mp4";
+    };
+    document.getElementById("change-video3").onclick = function() {
+        document.getElementById('Video').src = "steven2.mp4";
+    };
+    document.getElementById("change-video4").onclick = function() {
+        document.getElementById('Video').src = "steven3.mp4";
+    };
+    </script>
+</body>
+<footer class="social">
+            
+    <a href="https://www.facebook.com/daniel.kinowski.71/" class="btn">Facebook</a>
+    <a href="https://www.instagram.com/dankino123/" class="btn">Instagram</a>
+</footer>
+</html>
