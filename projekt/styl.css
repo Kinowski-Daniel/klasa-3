@@ -1,0 +1,205 @@
+
+.con{
+    height: 100%;
+    width: 100%;
+    background-image: url(lofi.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-left: 5% ;
+    padding-right:5% ;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    
+}
+
+.navb{
+    width:100%;
+    height: 15vh;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+   
+}
+
+.navb .btn{
+    display: inline-block;
+    background: linear-gradient(45deg, #e083f3, #f1adff);
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color:#ff29ed;
+    box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    z-index: 1;
+}
+
+.logo{
+    width: 250px;
+    cursor: pointer;
+    
+}
+
+nav{
+    flex: 1;
+    padding-left: 60px;
+   
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 0px 20px;
+    
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: rgb(208, 206, 216);
+    
+}
+
+.kontent h1{
+    font-size: 60px;
+    font-weight: 100;
+    margin-top: 24px;
+    margin-bottom: 15px;
+    color: #e083f3;  
+   z-index: 1; 
+}
+
+.kontent p{
+    font-size: 20px;
+    color: #f1adff;
+    
+}
+
+.kontent{
+ margin-left: 10%;
+ margin-top: 10%;
+ z-index: 1;
+}
+
+.kontent .btn{
+    display: inline-block;
+    background: linear-gradient(45deg, #e083f3, #f1adff);
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color:#ff29ed;
+    box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    
+}
+.social{
+    position: fixed;
+    height:15vh;
+    margin:auto;
+    right: 160px;
+    bottom: -65px;
+    z-index: 1;
+}
+.social a{
+    margin: 5px;
+}
+.social .btn{
+    display: inline-block;
+    background: linear-gradient(45deg, #e083f3, #f1adff);
+    border-radius: 6px;
+    padding: 10px 50px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color:#ff29ed;
+    box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    right: 160px;
+     
+}
+
+.muzyka{
+position: absolute;
+  bottom: 325px;
+   right: 160px;
+   z-index: 1;
+}
+
+.lll{
+   color:pink;
+
+}
+
+iframe{
+    border-color: #f1adff;
+
+}
+
+
+@keyframes animacja{
+    100%{
+        stroke-dashoffset: -35%;
+    }
+}
+
+
+@keyframes spin{
+    100%{
+        transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    }
+
+}
+
+svg{
+    font-size: 40px;
+    padding-top: 1%;
+    float: auto;
+}
+
+.copy{
+    fill: none;
+    stroke: #fff;
+    stroke-width: 0.5px ;
+    stroke-dasharray: 8% 30%;
+    stroke-dashoffset: 1%;
+    animation: animacja 17s linear infinite;
+}
+.copy1{
+    stroke: #e083f3;    
+    animation-delay: -3s;
+}
+.copy2{
+    stroke: #eba2fa;
+    animation-delay: -6s;
+}
+.copy3{
+    stroke: #f1adff;
+    animation-delay: -9s;
+}
+.copy4{
+    stroke: #f9bcff;
+    animation-delay: -12s;
+}
+.copy5{
+    stroke: #ff9dfa;
+    animation-delay: -15s;
+}
+
+.kontent h1::before, h1::after{
+    content: '';
+    padding: 40px;
+    position: absolute;
+    left: 270px;
+    top: 345px;
+    display: block;
+    transform: translateX(-50%) translateY(-50%) rotate(0);
+    animation: spin 6s alternate infinite ease-in-out;
+    }
+    .kontent h1::before{
+        border-left: 8px solid #f383d1;
+        border-top: 8px solid #e26ec9;
+       
+    }
+    .kontent h1::after{
+        border-right: 8px solid #f184ae;
+        border-bottom: 8px solid #ff79b1;
+        z-index: -1;
+    }
