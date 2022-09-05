@@ -1,0 +1,78 @@
+#include <cstdlib>
+#include <iostream>
+
+#include <stdio.h>
+using namespace std;
+int main(int argc, char *argv[])
+{
+int mac[5][2];
+for(int i=0;i<5;i++){
+for(int j=0;j<2;j++){
+	cout<<"Wpisz elementy macierzya" << "["<<i<<"] [" << j << "]";
+	cin>> mac[i][j];
+}
+}
+
+cout << "\n"; // nowy wiersz
+ for(int ii=0;ii<3;ii++)
+ {
+ for(int ji=0;ji<3;ji++)
+ {
+ cout << mac[ii][ji]<<"\t";
+ }
+ cout << "\n";
+ }
+
+
+int max= mac[0][0];
+int min = mac[0][0];
+int minc=0;
+int mind=0;
+int maxc=0;
+int maxd=0;
+float srednia,srednia1,srednia2,srednia3,srednia4 =0;
+float suma,suma1,suma2,suma3,suma4 =0;
+
+for(int c=0;c<5;c++)
+ {
+ 	
+ for(int d=0;d<2;d++)
+ {
+ if (mac[c][d]<min) 
+ {
+ min=mac[c][d]; 
+ minc=c;
+ mind=d;
+}
+ if (mac[c][d]>max) 
+ {
+ max=mac[c][d];
+ maxc=c;
+ maxd=d;
+ }
+  suma+=mac[0][0]+ mac[0][1];
+  suma1+=mac[1][0]+ mac[1][1];
+  suma2+=mac[2][0]+ mac[2][1];
+  suma3+=mac[3][0]+ mac[3][1];
+  suma4+=mac[4][0]+ mac[4][1];
+	srednia=suma/2;
+	srednia1=suma1/2;
+	srednia2=suma2/2;
+	srednia3=suma3/2;
+	srednia4=suma4/2;
+}
+
+ 
+cout << "srednia 1 i 2 macierzy wynosi" << (srednia /2) << "\n";
+cout << "srednia 3 i 4 macierzy wynosi" << (srednia1 /2) << "\n";
+cout << "srednia 5 i 6 macierzy wynosi" << (srednia2 /2) << "\n";
+cout << "srednia 7 i 8 macierzy wynosi" << (srednia3 /2) << "\n";
+cout << "srednia 9 i 10 macierzy wynosi" << (srednia4 /2) << "\n";
+cout << "max: a["<<maxc<< "][" <<maxd <<"]= "<< max 
+ << "\nmin: a["<<minc << "]["<< mind <<"]= " << min;
+ cout<<"\n"; 
+ system("PAUSE");
+ return EXIT_SUCCESS;
+
+}
+}
