@@ -1,0 +1,21 @@
+#tlo{
+width: 1px;
+height: 460;
+   background-image: url(bg.gif);
+    background-repeat: repeat-x;
+    
+}
+#hed{
+width: 428px;
+height: 180px;
+background-image: url(header.jpg);
+padding-right: 200px;
+float: left;
+}
+
+#bg2{
+    width: 100px;
+    height: 460px;
+   background-image: url(bg2.jpg); 
+   float:left;
+}

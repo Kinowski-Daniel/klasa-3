@@ -1,0 +1,33 @@
+body{
+        padding: 0;
+        margin: 0;
+        background-image: url(toptlo.gif) ;
+        background-color: white;
+        background-repeat: repeat-x;
+}
+
+header{
+    width:236px;
+    height:89px;
+    background-image: url(top.gif);
+}
+
+#lewy_panel{
+    width: 466px;
+    height: 100vh;
+    background-image: url(tlo.gif);
+}
+
+#menu{
+    width: 163px;
+    height: 38px;
+    background-image: url(menu.gif);
+}
+
+.opcja{
+    width: 125px;
+    height: 20px;
+    background-image: url(przycisk.gif);
+    color: darkgreen;
+    padding: 5px 20px;
+}
