@@ -117,9 +117,9 @@ nav ul li a{
 }
 
 .muzyka{
-position: absolute;
-  bottom: 325px;
-   right: 160px;
+position: relative;
+  bottom: 40%;
+   right: 30%;
    z-index: 1;
    flex: a;
 }
