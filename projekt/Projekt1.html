@@ -1,249 +1,165 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Projekt 1</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<meta charset="UTF-8">
+<title>Projekt 1</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+body { background: url(lofi.jpg) center/cover no-repeat; min-height:100vh; display:flex; flex-direction:column; color:#f1adff; overflow-x:hidden; position:relative; }
+canvas { position: fixed; top:0; left:0; pointer-events:none; z-index:0; opacity:1; transition: opacity 1.5s ease; }
 
-    body {
-      background: url(lofi.jpg) center/cover no-repeat;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      color: #f1adff;
-    }
+/* Nagłówek */
+header { display:flex; justify-content:space-between; align-items:center; padding:15px 50px; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); position: sticky; top:0; z-index:100; }
+header svg { max-width:40%; height:auto; }
+nav ul { list-style:none; display:flex; gap:20px; }
+nav a { text-decoration:none; color:rgb(208,206,216); padding:10px 20px; border-radius:6px; background:linear-gradient(45deg,#e083f3,#f1adff); box-shadow:3px 8px 22px rgba(94,28,68,0.15); transition: all 0.3s ease; opacity:0; transform:translateY(20px); }
+nav a.show { opacity:1; transform:translateY(0); }
 
-    /* Pasek nawigacji */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 50px;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(5px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+/* Główna zawartość */
+main { flex:1; display:flex; justify-content:center; align-items:center; padding:50px 20px; z-index:1; }
+.muzyka { width:100%; max-width:850px; text-align:center; position:relative; }
+.playlist { display:flex; gap:15px; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; margin-bottom:20px; padding-bottom:10px; }
+.playlist::-webkit-scrollbar { display:none; }
+.playlist button { flex:0 0 auto; background:linear-gradient(45deg,#e083f3,#f1adff); border:none; border-radius:8px; padding:12px 24px; color:#ff29ed; font-weight:600; cursor:pointer; box-shadow:3px 8px 22px rgba(94,28,68,0.15); transition: all 0.3s ease; }
+.playlist button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0px 0px 15px #f1adff; }
+iframe { width:100%; height:420px; border:4px solid #f1adff; border-radius:12px; box-shadow:0px 0px 20px rgba(0,0,0,0.4); }
 
-    header svg {
-      width: 300px;
-      max-width: 40%;
-      height: auto;
-    }
+/* Stopka */
+footer { background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display:flex; justify-content:space-between; align-items:center; padding:15px 50px; flex-wrap:wrap; gap:10px; }
+footer .kontrolki, footer .social { display:flex; gap:10px; }
+footer .kontrolki a, footer .social a { text-decoration:none; background:linear-gradient(45deg,#e083f3,#f1adff); padding:10px 25px; border-radius:6px; color:#ff29ed; box-shadow:3px 8px 22px rgba(94,28,68,0.15); transition:0.3s; }
+footer .kontrolki a:hover, footer .social a:hover { box-shadow:0px 0px 10px #f1adff; transform:scale(1.05); }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
+/* Animacje fade-in */
+.fade-in { opacity:0; transform:translateY(20px); transition: opacity 1s ease, transform 1s ease; }
+.fade-in.show { opacity:1; transform:translateY(0); }
 
-    nav a {
-      text-decoration: none;
-      color: rgb(208, 206, 216);
-      padding: 10px 20px;
-      border-radius: 6px;
-      background: linear-gradient(45deg, #e083f3, #f1adff);
-      box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
-      transition: 0.3s;
-    }
+/* SVG Animacje */
+.copy { fill:none; stroke-width:0.5px; stroke-dasharray:8% 30%; stroke-dashoffset:1%; animation: animacja 17s linear infinite; }
+.copy1 { stroke:#e083f3; animation-delay:-3s; }
+.copy2 { stroke:#eba2fa; animation-delay:-6s; }
+.copy3 { stroke:#f1adff; animation-delay:-9s; }
+.copy4 { stroke:#f9bcff; animation-delay:-12s; }
+.copy5 { stroke:#ff9dfa; animation-delay:-15s; }
+@keyframes animacja { 100% { stroke-dashoffset:-35%; } }
 
-    nav a:hover {
-      transform: scale(1.05);
-      box-shadow: 0px 0px 15px #f1adff;
-    }
-
-    /* Główna zawartość */
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 50px 20px;
-    }
-
-    .muzyka {
-      width: 100%;
-      max-width: 850px;
-      text-align: center;
-    }
-
-    /* Pasek przewijanych przycisków */
-    .playlist {
-      display: flex;
-      gap: 15px;
-      overflow-x: auto;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-    }
-
-    .playlist::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
-    }
-
-    .playlist button {
-      flex: 0 0 auto;
-      background: linear-gradient(45deg, #e083f3, #f1adff);
-      border: none;
-      border-radius: 8px;
-      padding: 12px 24px;
-      color: #ff29ed;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
-      transition: all 0.3s ease;
-    }
-
-    .playlist button:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0px 0px 15px #f1adff;
-    }
-
-    iframe {
-      width: 100%;
-      height: 420px;
-      border: 4px solid #f1adff;
-      border-radius: 12px;
-      box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
-    }
-
-    /* Stopka */
-    footer {
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(5px);
-      text-align: center;
-      padding: 15px;
-    }
-
-    footer a {
-      margin: 0 10px;
-      text-decoration: none;
-      background: linear-gradient(45deg, #e083f3, #f1adff);
-      padding: 10px 25px;
-      border-radius: 6px;
-      color: #ff29ed;
-      box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
-      transition: 0.3s;
-    }
-
-    footer a:hover {
-      box-shadow: 0px 0px 10px #f1adff;
-      transform: scale(1.05);
-    }
-
-    /* Animacje fade-in */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .fade-in.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* SVG animacje kopiowania */
-    .copy {
-      fill: none;
-      stroke-width: 0.5px ;
-      stroke-dasharray: 8% 30%;
-      stroke-dashoffset: 1%;
-      animation: animacja 17s linear infinite;
-    }
-    .copy1 { stroke: #e083f3; animation-delay: -3s; }
-    .copy2 { stroke: #eba2fa; animation-delay: -6s; }
-    .copy3 { stroke: #f1adff; animation-delay: -9s; }
-    .copy4 { stroke: #f9bcff; animation-delay: -12s; }
-    .copy5 { stroke: #ff9dfa; animation-delay: -15s; }
-
-    @keyframes animacja {
-      100% { stroke-dashoffset: -35%; }
-    }
-
-    /* Responsywność */
-    @media (max-width: 800px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-      }
-      header svg {
-        max-width: 80%;
-        margin-bottom: 15px;
-      }
-      nav ul {
-        flex-direction: row;
-        gap: 15px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      iframe { height: 250px; }
-      nav ul { flex-direction: column; gap: 10px; }
-    }
-  </style>
+/* Responsywność */
+@media (max-width:600px){
+iframe { height:250px; }
+header svg { max-width:60%; }
+nav ul { gap:10px; }
+footer { flex-direction:column; align-items:flex-start; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <svg viewBox="0 0 800 100" class="fade-in svg-text">
-      <text id="mytext" x="0%" y="50%" fill="none" font-size="60">Daniel Kinowski</text>
-      <use xlink:href="#mytext" class="copy copy1"></use>
-      <use xlink:href="#mytext" class="copy copy2"></use>
-      <use xlink:href="#mytext" class="copy copy3"></use>
-      <use xlink:href="#mytext" class="copy copy4"></use>
-      <use xlink:href="#mytext" class="copy copy5"></use>
-    </svg>
-    <nav class="fade-in">
-      <ul>
-        <li><a href="">Główna</a></li>
-        <li><a href="zadania.html">Zadania</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <div class="muzyka fade-in">
-      <div class="playlist">
-        <button onclick="changeVideo('splat.mp4')">Rainbow Anarchy</button>
-        <button onclick="changeVideo('lofi.mp4')">Lofi Music</button>
-        <button onclick="changeVideo('steven.mp4')">It's Over</button>
-        <button onclick="changeVideo('steven2.mp4')">Piosenka Stevonnie</button>
-        <button onclick="changeVideo('steven3.mp4')">Love Like You</button>
-      </div>
-      <iframe id="Video" src="lofi.mp4" allowfullscreen></iframe>
-    </div>
-  </main>
+<header>
+<svg viewBox="0 0 800 100">
+<text id="mytext" x="0%" y="50%" fill="none" font-size="48">Daniel Kinowski</text>
+<use xlink:href="#mytext" class="copy copy1"></use>
+<use xlink:href="#mytext" class="copy copy2"></use>
+<use xlink:href="#mytext" class="copy copy3"></use>
+<use xlink:href="#mytext" class="copy copy4"></use>
+<use xlink:href="#mytext" class="copy copy5"></use>
+</svg>
+<nav>
+<ul>
+<li><a href="" class="fade-in">Główna</a></li>
+<li><a href="zadania.html" class="fade-in">Zadania</a></li>
+</ul>
+</nav>
+</header>
 
-  <footer class="fade-in">
-    <a href="https://www.facebook.com/daniel.kinowski.71/">Facebook</a>
-    <a href="https://www.instagram.com/dankino123/">Instagram</a>
-  </footer>
+<main>
+<div class="muzyka fade-in">
+<div class="playlist">
+<button onclick="changeVideo('splat.mp4')">Rainbow Anarchy</button>
+<button onclick="changeVideo('lofi.mp4')">Lofi Music</button>
+<button onclick="changeVideo('steven.mp4')">It's Over</button>
+<button onclick="changeVideo('steven2.mp4')">Piosenka Stevonnie</button>
+<button onclick="changeVideo('steven3.mp4')">Love Like You</button>
+</div>
+<iframe id="Video" src="lofi.mp4" allowfullscreen></iframe>
+</div>
+</main>
 
-  <script>
-    function changeVideo(src) {
-      document.getElementById('Video').src = src;
-    }
+<footer class="fade-in">
+<div class="kontrolki">
+<a href="#" id="rainBtn">Wyłącz deszcz</a>
+</div>
+<div class="social">
+<a href="https://www.facebook.com/daniel.kinowski.71/" target="_blank">Facebook</a>
+<a href="https://www.instagram.com/dankino123/" target="_blank">Instagram</a>
+</div>
+</footer>
 
-    // Intersection Observer dla fade-in
-    const elements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
+<canvas id="rainCanvas"></canvas>
 
-    elements.forEach(el => observer.observe(el));
-  </script>
+<script>
+function changeVideo(src){document.getElementById('Video').src=src;}
+
+// Fade-in
+const elements=document.querySelectorAll('.fade-in');
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target);}})},{threshold:0.2});
+elements.forEach(el=>observer.observe(el));
+
+// --- Kolorowy gradientowy deszcz z płynnym fade ---
+const canvas=document.getElementById('rainCanvas');
+const ctx=canvas.getContext('2d');
+let drops=[],rainOpacity=1,rainTarget=1;
+const colors=['#ff9dfa','#f9bcff','#f1adff','#eba2fa','#e083f3'];
+
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+window.addEventListener('resize',resizeCanvas);
+resizeCanvas();
+
+function createDrops(){
+drops=[];
+for(let i=0;i<200;i++){
+drops.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+l:Math.random()*20+10,
+xs:-2+Math.random()*4,
+ys:Math.random()*10+10,
+colorIndex:Math.floor(Math.random()*colors.length)
+});
+}}
+createDrops();
+
+let hueShift=0;
+
+function drawRain(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.globalAlpha = rainOpacity;
+for(let i=0;i<drops.length;i++){
+let d=drops[i];
+let gradient = ctx.createLinearGradient(d.x,d.y,d.x+d.l*d.xs/10,d.y+d.l*d.ys/10);
+let c1 = colors[(d.colorIndex + Math.floor(hueShift)) % colors.length];
+let c2 = colors[(d.colorIndex + 1 + Math.floor(hueShift)) % colors.length];
+gradient.addColorStop(0,c1);
+gradient.addColorStop(1,c2);
+ctx.strokeStyle = gradient;
+ctx.lineWidth=1;
+ctx.beginPath();
+ctx.moveTo(d.x,d.y);
+ctx.lineTo(d.x + d.l*d.xs/10, d.y + d.l*d.ys/10);
+ctx.stroke();
+d.x+=d.xs;
+d.y+=d.ys;
+if(d.x>canvas.width||d.y>canvas.height){d.x=Math.random()*canvas.width; d.y=-20;}
+}
+hueShift += 0.05;
+rainOpacity += (rainTarget - rainOpacity) * 0.02; // płynne zanikanie
+requestAnimationFrame(drawRain);
+}
+drawRain();
+
+document.getElementById('rainBtn').addEventListener('click',()=>{
+rainTarget = rainTarget === 1 ? 0 : 1;
+document.getElementById('rainBtn').textContent = rainTarget===1 ? 'Wyłącz deszcz' : 'Włącz deszcz';
+});
+</script>
 </body>
 </html>
