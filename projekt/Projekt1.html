@@ -1,79 +1,223 @@
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-    <title>Projekt 1</title>
-    <link rel="stylesheet" href="styl.css">
+  <meta charset="UTF-8">
+  <title>Projekt 1</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: url(lofi.jpg) center/cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: #f1adff;
+    }
+
+    /* Pasek nawigacji */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(5px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header svg {
+      font-size: 28px;
+      width: 250px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: rgb(208, 206, 216);
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: linear-gradient(45deg, #e083f3, #f1adff);
+      box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 15px #f1adff;
+    }
+
+    /* Główna zawartość */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    .muzyka {
+      width: 100%;
+      max-width: 850px;
+      text-align: center;
+    }
+
+    /* Pasek przewijanych przycisków */
+    .playlist {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+
+    .playlist::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    .playlist button {
+      flex: 0 0 auto;
+      background: linear-gradient(45deg, #e083f3, #f1adff);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      color: #ff29ed;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+      transition: all 0.3s ease;
+    }
+
+    .playlist button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0px 0px 15px #f1adff;
+    }
+
+    iframe {
+      width: 100%;
+      height: 420px;
+      border: 4px solid #f1adff;
+      border-radius: 12px;
+      box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Stopka */
+    footer {
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      text-align: center;
+      padding: 15px;
+    }
+
+    footer a {
+      margin: 0 10px;
+      text-decoration: none;
+      background: linear-gradient(45deg, #e083f3, #f1adff);
+      padding: 10px 25px;
+      border-radius: 6px;
+      color: #ff29ed;
+      box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      box-shadow: 0px 0px 10px #f1adff;
+      transform: scale(1.05);
+    }
+
+    /* Animacje wejścia */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsywność */
+    @media (max-width: 600px) {
+      iframe {
+        height: 250px;
+      }
+    }
+  </style>
 </head>
-<body>    
-    <div class="con"> 
-        <div class="navb">
-            <svg viewBox="0 0 800 400">
-                <text id="mytext" x="0%" y="50%" fill="none" >Daniel Kinowski</text>
-                <use xlink:href="#mytext" class="copy copy1"></use>
-                <use xlink:href="#mytext" class="copy copy2"></use>
-                <use xlink:href="#mytext" class="copy copy3"></use>
-                <use xlink:href="#mytext" class="copy copy4"></use>
-                <use xlink:href="#mytext" class="copy copy5"></use>
-            </svg>
-            <nav>
-                <ul>
-                    <li> <a href="" class="btn">Główna</a></li>
-                    <li> <a href="zadania.html" class="btn">Zadania</a></li>
-                </ul>
-            </nav>
-        
+<body>
+  <header>
+    <svg viewBox="0 0 800 400">
+      <text id="mytext" x="0%" y="50%" fill="none">Daniel Kinowski</text>
+      <use xlink:href="#mytext" class="copy copy1"></use>
+      <use xlink:href="#mytext" class="copy copy2"></use>
+      <use xlink:href="#mytext" class="copy copy3"></use>
+      <use xlink:href="#mytext" class="copy copy4"></use>
+      <use xlink:href="#mytext" class="copy copy5"></use>
+    </svg>
+    <nav>
+      <ul>
+        <li><a href="">Główna</a></li>
+        <li><a href="zadania.html">Zadania</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        </div>
-    
+  <main>
+    <div class="muzyka fade-in">
+      <div class="playlist">
+        <button onclick="changeVideo('splat.mp4')">Rainbow Anarchy</button>
+        <button onclick="changeVideo('lofi.mp4')">Lofi Music</button>
+        <button onclick="changeVideo('steven.mp4')">It's Over</button>
+        <button onclick="changeVideo('steven2.mp4')">Piosenka Stevonnie</button>
+        <button onclick="changeVideo('steven3.mp4')">Love Like You</button>
+        <button onclick="changeVideo('extra1.mp4')">Extra 1</button>
+        <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
+          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
+          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
+          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
+          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
+          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
+      </div>
+      <iframe id="Video" src="lofi.mp4" allowfullscreen></iframe>
+    </div>
+  </main>
 
-        <div class="kontent">
-            <h1>Coś o mnie</h1>
-            <p>Mam 17 lat</p>
-            <p>Interesuje się słuchaniem i tworzeniem muzyką</p>
-            <p>Nie lubie ludzi ale da się ze mną pogadać</p>
+  <footer class="fade-in">
+    <a href="https://www.facebook.com/daniel.kinowski.71/">Facebook</a>
+    <a href="https://www.instagram.com/dankino123/">Instagram</a>
+  </footer>
 
-            
-            <a href="rick.mp4" class="btn">Niespodzianka</a>
-        
+  <script>
+    function changeVideo(src) {
+      document.getElementById('Video').src = src;
+    }
 
-    
-    
-        </div>
-        <div class="muzyka">
-            <button id="change-video">Rainbow Anarchy</button>
-            <button id="change-video1">Lofi Music</button>
-            <button id="change-video2">It's over</button>
-            <button id="change-video3">Piosenka Stevonnie</button>
-            <button id="change-video4">Love Like You</button>
-            <br>
-            <iframe id="Video" width="650" height="400"  src="lofi.mp4" frameborder="10" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
-            picture-in-picture; "allowfullscreen>
-            </iframe>
-            </div>
-            </div>
-       
-            
-<script type="text/javascript">
-  
-    document.getElementById("change-video").onclick = function() {
-        document.getElementById('Video').src = "splat.mp4";
-    };
-    document.getElementById("change-video1").onclick = function() {
-        document.getElementById('Video').src = "lofi.mp4";
-    };
-    document.getElementById("change-video2").onclick = function() {
-        document.getElementById('Video').src = "steven.mp4";
-    };
-    document.getElementById("change-video3").onclick = function() {
-        document.getElementById('Video').src = "steven2.mp4";
-    };
-    document.getElementById("change-video4").onclick = function() {
-        document.getElementById('Video').src = "steven3.mp4";
-    };
-    </script>
+    // Animacje wejścia (Intersection Observer)
+    const elements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+  </script>
 </body>
-<footer class="social">
-            
-    <a href="https://www.facebook.com/daniel.kinowski.71/" class="btn">Facebook</a>
-    <a href="https://www.instagram.com/dankino123/" class="btn">Instagram</a>
-</footer>
 </html>
