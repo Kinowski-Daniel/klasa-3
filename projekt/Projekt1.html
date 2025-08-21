@@ -33,8 +33,9 @@
     }
 
     header svg {
-      font-size: 28px;
-      width: 250px;
+      width: 300px;
+      max-width: 40%;
+      height: auto;
     }
 
     nav ul {
@@ -138,7 +139,7 @@
       transform: scale(1.05);
     }
 
-    /* Animacje wejścia */
+    /* Animacje fade-in */
     .fade-in {
       opacity: 0;
       transform: translateY(40px);
@@ -150,25 +151,57 @@
       transform: translateY(0);
     }
 
+    /* SVG animacje kopiowania */
+    .copy {
+      fill: none;
+      stroke-width: 0.5px ;
+      stroke-dasharray: 8% 30%;
+      stroke-dashoffset: 1%;
+      animation: animacja 17s linear infinite;
+    }
+    .copy1 { stroke: #e083f3; animation-delay: -3s; }
+    .copy2 { stroke: #eba2fa; animation-delay: -6s; }
+    .copy3 { stroke: #f1adff; animation-delay: -9s; }
+    .copy4 { stroke: #f9bcff; animation-delay: -12s; }
+    .copy5 { stroke: #ff9dfa; animation-delay: -15s; }
+
+    @keyframes animacja {
+      100% { stroke-dashoffset: -35%; }
+    }
+
     /* Responsywność */
-    @media (max-width: 600px) {
-      iframe {
-        height: 250px;
+    @media (max-width: 800px) {
+      header {
+        flex-direction: column;
+        align-items: center;
       }
+      header svg {
+        max-width: 80%;
+        margin-bottom: 15px;
+      }
+      nav ul {
+        flex-direction: row;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      iframe { height: 250px; }
+      nav ul { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <svg viewBox="0 0 800 400">
-      <text id="mytext" x="0%" y="50%" fill="none">Daniel Kinowski</text>
+    <svg viewBox="0 0 800 100" class="fade-in svg-text">
+      <text id="mytext" x="0%" y="50%" fill="none" font-size="60">Daniel Kinowski</text>
       <use xlink:href="#mytext" class="copy copy1"></use>
       <use xlink:href="#mytext" class="copy copy2"></use>
       <use xlink:href="#mytext" class="copy copy3"></use>
       <use xlink:href="#mytext" class="copy copy4"></use>
       <use xlink:href="#mytext" class="copy copy5"></use>
     </svg>
-    <nav>
+    <nav class="fade-in">
       <ul>
         <li><a href="">Główna</a></li>
         <li><a href="zadania.html">Zadania</a></li>
@@ -184,13 +217,6 @@
         <button onclick="changeVideo('steven.mp4')">It's Over</button>
         <button onclick="changeVideo('steven2.mp4')">Piosenka Stevonnie</button>
         <button onclick="changeVideo('steven3.mp4')">Love Like You</button>
-        <button onclick="changeVideo('extra1.mp4')">Extra 1</button>
-        <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
-          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
-          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
-          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
-          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
-          <button onclick="changeVideo('extra2.mp4')">Extra 2</button>
       </div>
       <iframe id="Video" src="lofi.mp4" allowfullscreen></iframe>
     </div>
@@ -206,7 +232,7 @@
       document.getElementById('Video').src = src;
     }
 
-    // Animacje wejścia (Intersection Observer)
+    // Intersection Observer dla fade-in
     const elements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
